@@ -1,0 +1,148 @@
+{
+  "corpus_version": "m6_corpus_v1",
+  "expected_terminal": "BLOCKED",
+  "family": "adversarial",
+  "ground_truth_basis": "Golden snapshot of the deterministic runtime (unchanged from gate/M5; independently verified by M4/M5 tests and docs/evidence/M4/M4.2_hero_capture.json). Canonical facts (requirement constraints/dispositions, terminal outcome, adversarial dimensions) cross-checked against specifications/northstar/profiles/m2_product_profiles.json, the closed catalog, and evals/expected/. Frozen before the post-audit authoritative rerun; falsifiability is proven independently by the tests/evals/test_corpus_harness.py mutation probes.",
+  "mission_ref": "unsupported requirement",
+  "scenario_id": "12_spec_unsupported_measurement",
+  "stages": {
+    "admission": {
+      "adversarial_dimensions_pass": true,
+      "adversarial_reason_codes": [
+        "UNKNOWN_MEASUREMENT_KEY"
+      ],
+      "normalization_status_multiset": {
+        "UNSUPPORTED": 1
+      },
+      "requirements": [
+        {
+          "applicability_status": "UNRESOLVED",
+          "constraint": null,
+          "disposition": "FORBIDDEN",
+          "measurement_key": "req@doc_m6_12_spec_unsupported_measurement:s0001",
+          "normalization_status": "UNSUPPORTED",
+          "severity": "BLOCKING"
+        }
+      ],
+      "severity_multiset": {
+        "BLOCKING": 1
+      },
+      "status_reasons": [
+        {
+          "measurement_key": "req@doc_m6_12_spec_unsupported_measurement:s0001",
+          "reasons": [
+            "APPLICABILITY_UNRESOLVED",
+            "UNKNOWN_MEASUREMENT_KEY"
+          ]
+        }
+      ]
+    },
+    "applicability": {
+      "applicability_status_multiset": {
+        "UNRESOLVED": 1
+      }
+    },
+    "events": {
+      "skeleton": [
+        {
+          "cause": "INGEST_REQUESTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "CREATED",
+          "to": "INGESTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INGEST_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTING",
+          "to": "INGESTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INTERPRETATION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTED",
+          "to": "INTERPRETING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "REQUIREMENTS_ADMITTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INTERPRETING",
+          "to": "REQUIREMENTS_ADMITTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "QC_PLAN_VALIDATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REQUIREMENTS_ADMITTED",
+          "to": "QC_PLANNED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "QC_PLANNED",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "TERMINAL_EVALUATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "BLOCKED",
+          "type": "STATE_TRANSITION"
+        }
+      ]
+    },
+    "findings": {
+      "by_key": {},
+      "final_blocking_keys": [],
+      "requirement_keys": []
+    },
+    "interpretation": {
+      "requirement_count": 1
+    },
+    "measurement": {
+      "records": []
+    },
+    "planning": {
+      "plan_items": {},
+      "required_check_count": 0
+    },
+    "predicate": {
+      "bindings": [],
+      "fail_count": 0,
+      "fail_keys_by_cycle": [],
+      "final_by_key": {},
+      "not_evaluated_count": 0,
+      "pass_count": 0
+    },
+    "terminal": {
+      "counts": {
+        "applicable_blocking": 0,
+        "authorized_remediations": 0,
+        "autonomous_remediations": 0,
+        "failed": 0,
+        "not_evaluated": 0,
+        "passed": 0,
+        "pending_decisions": 0,
+        "unresolved_spec": 1
+      },
+      "has_verdict": true,
+      "outcome": "BLOCKED",
+      "reason_codes": [
+        "SPEC_UNRESOLVED"
+      ],
+      "terminal_status": "BLOCKED"
+    }
+  },
+  "title": "Unsupported measurement blocks"
+}

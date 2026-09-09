@@ -1,0 +1,9 @@
+{
+  "fixture_id": "injected_instruction",
+  "hand_authored": true,
+  "expected_normalization_status": "UNSUPPORTED",
+  "expected_applicability_status": "UNRESOLVED",
+  "expected_severity": "BLOCKING",
+  "expected_terminal_outcome": "BLOCKED",
+  "reason_codes": ["UNTRUSTED_DIRECTIVE_NO_EXECUTABLE_REQUIREMENT"]
+}

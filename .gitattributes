@@ -1,0 +1,20 @@
+# Normalize all text to LF in the repository AND in the working tree on every
+# platform. AIRCheck freezes SHA-256 hashes of source documents, destination
+# profiles, and M0/M2 fixtures; without this, a fresh clone on a host with
+# git autocrlf enabled (e.g. default Windows) checks those text files out as
+# CRLF, changing their bytes and breaking the content-addressed fixtures. Pinning
+# eol=lf keeps the frozen hashes reproducible on a fresh clone anywhere.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.mov binary
+*.mp4 binary
+*.srt -text
+*.woff binary
+*.woff2 binary

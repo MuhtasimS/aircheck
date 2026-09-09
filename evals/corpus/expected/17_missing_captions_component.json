@@ -1,0 +1,185 @@
+{
+  "corpus_version": "m6_corpus_v1",
+  "expected_terminal": "BLOCKED",
+  "family": "unfixable_defect",
+  "ground_truth_basis": "Golden snapshot of the deterministic runtime (unchanged from gate/M5; independently verified by M4/M5 tests and docs/evidence/M4/M4.2_hero_capture.json). Canonical facts (requirement constraints/dispositions, terminal outcome, adversarial dimensions) cross-checked against specifications/northstar/profiles/m2_product_profiles.json, the closed catalog, and evals/expected/. Frozen before the post-audit authoritative rerun; falsifiability is proven independently by the tests/evals/test_corpus_harness.py mutation probes.",
+  "mission_ref": "missing component",
+  "scenario_id": "17_missing_captions_component",
+  "stages": {
+    "admission": {
+      "normalization_status_multiset": {
+        "EXECUTABLE": 1
+      },
+      "requirements": [
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "PRESENT",
+            "value": true
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "captions.present",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        }
+      ],
+      "severity_multiset": {
+        "BLOCKING": 1
+      },
+      "status_reasons": [
+        {
+          "measurement_key": "captions.present",
+          "reasons": []
+        }
+      ]
+    },
+    "applicability": {
+      "applicability_status_multiset": {
+        "APPLICABLE": 1
+      }
+    },
+    "events": {
+      "skeleton": [
+        {
+          "cause": "INGEST_REQUESTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "CREATED",
+          "to": "INGESTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INGEST_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTING",
+          "to": "INGESTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INTERPRETATION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTED",
+          "to": "INTERPRETING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "REQUIREMENTS_ADMITTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INTERPRETING",
+          "to": "REQUIREMENTS_ADMITTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "QC_PLAN_VALIDATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REQUIREMENTS_ADMITTED",
+          "to": "QC_PLANNED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "QC_PLANNED",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "TERMINAL_EVALUATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "BLOCKED",
+          "type": "STATE_TRANSITION"
+        }
+      ]
+    },
+    "findings": {
+      "by_key": {
+        "captions.present": {
+          "has_options": false,
+          "status": "OPEN"
+        }
+      },
+      "final_blocking_keys": [
+        "captions.present"
+      ],
+      "requirement_keys": [
+        "captions.present"
+      ]
+    },
+    "interpretation": {
+      "requirement_count": 1
+    },
+    "measurement": {
+      "records": [
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "captions.present",
+          "status": "OK",
+          "unit": null,
+          "value": false
+        }
+      ]
+    },
+    "planning": {
+      "plan_items": {
+        "captions.present": {
+          "asset_role": "CAPTIONS",
+          "tool": "scan_package"
+        }
+      },
+      "required_check_count": 1
+    },
+    "predicate": {
+      "bindings": [
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "captions.present",
+          "bound_requirement_key": "captions.present",
+          "cycle": 0,
+          "outcome": "FAIL",
+          "requirement_key": "captions.present"
+        }
+      ],
+      "fail_count": 1,
+      "fail_keys_by_cycle": [
+        [
+          0,
+          [
+            "captions.present"
+          ]
+        ]
+      ],
+      "final_by_key": {
+        "captions.present": "FAIL"
+      },
+      "not_evaluated_count": 0,
+      "pass_count": 0
+    },
+    "terminal": {
+      "counts": {
+        "applicable_blocking": 1,
+        "authorized_remediations": 0,
+        "autonomous_remediations": 0,
+        "failed": 1,
+        "not_evaluated": 0,
+        "passed": 0,
+        "pending_decisions": 0,
+        "unresolved_spec": 0
+      },
+      "has_verdict": true,
+      "outcome": "BLOCKED",
+      "reason_codes": [
+        "REQUIREMENT_NOT_PASSED"
+      ],
+      "terminal_status": "BLOCKED"
+    }
+  },
+  "title": "Missing required component blocks"
+}

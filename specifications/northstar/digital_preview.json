@@ -1,0 +1,85 @@
+{
+  "profile_id": "northstar_digital_preview_v1",
+  "profile_name": "Northstar Digital Preview",
+  "fictional": true,
+  "requirements": [
+    {
+      "requirement_id": "req_dp_package",
+      "source_reference": "Northstar Digital Preview §1.1",
+      "category": "PACKAGE",
+      "description": "Preview delivery may use a flat package with a lightweight manifest.",
+      "normalized_constraint": {"layout": "flat", "manifest": "light", "required": true},
+      "applicable_assets": ["asset_package_root"],
+      "verification_tool": "scan_package",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_dp_video",
+      "source_reference": "Northstar Digital Preview §3.1",
+      "category": "VIDEO",
+      "description": "Preview video must be a 1080p H.264 High Profile MP4 at 23.976 fps.",
+      "normalized_constraint": {"container": "mp4", "codec": "h264", "profile": "high", "width": 1920, "height": 1080, "frame_rate": "24000/1001"},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "probe_media",
+      "severity": "BLOCKER",
+      "remediation_policy": "APPROVAL_REQUIRED"
+    },
+    {
+      "requirement_id": "req_dp_audio",
+      "source_reference": "Northstar Digital Preview §4.1",
+      "category": "AUDIO",
+      "description": "Preview audio must be 48 kHz stereo at -16 LKFS ±2 LU and no more than -1 dBTP.",
+      "normalized_constraint": {"channels": 2, "layout": "stereo", "sample_rate_hz": 48000, "integrated_loudness_lkfs": -16, "tolerance_lu": 2, "max_true_peak_dbtp": -1},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "measure_audio",
+      "severity": "BLOCKER",
+      "remediation_policy": "APPROVAL_REQUIRED"
+    },
+    {
+      "requirement_id": "req_dp_captions",
+      "source_reference": "Northstar Digital Preview §6.1",
+      "category": "CAPTIONS",
+      "description": "English preview captions must be delivered as WebVTT sidecar media.",
+      "normalized_constraint": {"required": true, "format": "WEBVTT", "language": "en", "delivery": "sidecar"},
+      "applicable_assets": ["asset_captions_en"],
+      "verification_tool": "inspect_captions",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_dp_naming",
+      "source_reference": "Northstar Digital Preview §2.1",
+      "category": "NAMING",
+      "description": "The preview filename must include a compact program and preview token.",
+      "normalized_constraint": {"pattern": "{program}-ns-preview-v{version}.mp4", "case": "lower"},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "verify_filename",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_dp_metadata",
+      "source_reference": "Northstar Digital Preview §7.1",
+      "category": "METADATA",
+      "description": "The lightweight manifest must declare only the program title.",
+      "normalized_constraint": {"required_fields": ["program_title"]},
+      "applicable_assets": ["asset_manifest"],
+      "verification_tool": "verify_manifest",
+      "severity": "WARNING",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_dp_checksum",
+      "source_reference": "Northstar Digital Preview §8.1",
+      "category": "CHECKSUM",
+      "description": "A SHA-256 checksum may accompany the preview package.",
+      "normalized_constraint": {"required": false, "algorithm": "sha256", "coverage": "program_asset"},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "hash_assets",
+      "severity": "WARNING",
+      "remediation_policy": "REVERSIBLE"
+    }
+  ]
+}
+

@@ -1,0 +1,39 @@
+{
+  "agentcore_model_id": "us.amazon.nova-lite-v1:0",
+  "components": {
+    "agentcore": {
+      "image_digest": "sha256:c84b6d442259e0804f059ddf8adc2b56b29587b9b27aad5de3a0d2ed82a110aa",
+      "image_repo": "aircheck-diagnosis-agent",
+      "image_tag": "223a508b77f85259ff25915015cccf4a3246aa1d",
+      "model_id": "us.amazon.nova-lite-v1:0",
+      "runtime": "aircheck_diagnosis",
+      "status": "READY",
+      "version": "3"
+    },
+    "api": {
+      "git_sha_env": "223a508b77f85259ff25915015cccf4a3246aa1d",
+      "image_digest": "sha256:3fae36990bbdaacc0ac844c2bebb5fdd4509fbefb0d45a5708de4898cd89b5d2",
+      "image_repo": "aircheck-api",
+      "image_tag": "223a508b77f85259ff25915015cccf4a3246aa1d",
+      "lambda": "aircheck-api",
+      "s3_prefix": "aircheck-m8"
+    },
+    "web": {
+      "git_sha_env": "223a508b77f85259ff25915015cccf4a3246aa1d",
+      "image_digest": "sha256:0e67f1be047443c37a313d4015101422a4de9ae2344651cd2dc51d214e0ca2b1",
+      "image_repo": "aircheck-web",
+      "image_tag": "223a508b77f85259ff25915015cccf4a3246aa1d",
+      "lambda": "aircheck-web",
+      "s3_prefix": null
+    }
+  },
+  "environment": "hackathon",
+  "generated_at": "2026-09-09T03:28:09Z",
+  "git_sha": "223a508b77f85259ff25915015cccf4a3246aa1d",
+  "persistence": {
+    "bucket": "aircheck-<ACCT>-state",
+    "prefix": "aircheck-m8",
+    "versioning": "enabled"
+  },
+  "region": "us-east-1"
+}

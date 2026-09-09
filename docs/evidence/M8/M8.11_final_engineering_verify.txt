@@ -1,0 +1,34 @@
+AIRCheck M8 Phase A — Final engineering verification & regression preservation
+Gate: M8 Phase A (engineering)   Captured: 2026-09-08
+
+FULL CANONICAL VERIFY (python scripts/project.py verify) -> exit 0
+  backend tests ....... 305 passed
+  frontend tests ...... 22 passed
+  frontend build ...... Build complete (vinext)
+  frontend lint ....... oxlint clean
+  whitespace check .... git diff --check clean
+
+BACKEND COUNT: 305 (M7 baseline 273; M8 added 32: 4 lease + 6 concurrency + 2 mirror-subpath
+  + 15 AgentCore-adversarial + 5 provenance).
+
+FOCUSED SUITES (all green within the 305):
+  tests/persistence/test_s3_store.py + test_s3_lock.py + test_concurrency.py .. S3 persistence,
+    per-run lease, cross-container concurrency, hydration split
+  tests/api/test_projections.py .............................................. decision authority /
+    single use (incl. the preserved "submit when none pending -> 400" behavior)
+  tests/agent/test_agentcore_model.py ........................................ AgentCore adapter /
+    fallback (35; incl. 15 M8 adversarial malformed-output cases)
+  tests/api/test_provenance.py ............................................... AgentCore provenance
+  tests/test_project_runner.py ............................................... deployment/runner surface
+
+PREDECESSOR TRUTH PRESERVED (not weakened):
+  - M6 evaluator expected truth UNCHANGED (no evals/expected or corpus grading edits).
+  - Frozen M4 runtime (domain/runtime/authority/media/tools/evidence/persistence.store) UNCHANGED;
+    M8 added only the s3_lock adapter and non-invasive service/adapter changes at the app boundary.
+  - No test was weakened to accommodate deployment changes. The only test-expectation edits are
+    tests/test_project_runner.py (the `demo` command is now a real authorized foundation command,
+    and `verify` builds before lint) and tests/agent/test_agentcore_model.py (the bindable helper
+    is now the stronger authoritative check) — each reflects a real, authorized capability change,
+    with new adversarial coverage added, not removed.
+
+RESULT: GREEN.

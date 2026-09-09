@@ -1,0 +1,36 @@
+{
+  "corpus_version": "m6_corpus_v1",
+  "expected_terminal": "DELIVERY_READY",
+  "family": "comparison",
+  "ground_truth_basis": "Golden snapshot of the deterministic runtime (unchanged from gate/M5; independently verified by M4/M5 tests and docs/evidence/M4/M4.2_hero_capture.json). Canonical facts (requirement constraints/dispositions, terminal outcome, adversarial dimensions) cross-checked against specifications/northstar/profiles/m2_product_profiles.json, the closed catalog, and evals/expected/. Frozen before the post-audit authoritative rerun; falsifiability is proven independently by the tests/evals/test_corpus_harness.py mutation probes.",
+  "mission_ref": "Profile A vs Profile B on the same package",
+  "scenario_id": "07_profile_divergence",
+  "stages": {
+    "profile_divergence": {
+      "broadcast_check_count": 15,
+      "broadcast_decision_count": 1,
+      "broadcast_terminal": "DELIVERY_READY",
+      "distinct_check_counts": true,
+      "preview_check_count": 13,
+      "preview_decision_count": 0,
+      "preview_terminal": "DELIVERY_READY"
+    },
+    "terminal": {
+      "counts": {
+        "applicable_blocking": 15,
+        "authorized_remediations": 1,
+        "autonomous_remediations": 4,
+        "failed": 0,
+        "not_evaluated": 0,
+        "passed": 15,
+        "pending_decisions": 0,
+        "unresolved_spec": 0
+      },
+      "has_verdict": true,
+      "outcome": "DELIVERY_READY",
+      "reason_codes": [],
+      "terminal_status": "DELIVERY_READY"
+    }
+  },
+  "title": "Same package, Profile A vs Profile B"
+}

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aircheck-diagnosis-agent"
+version = "0.1.0"
+description = "AIRCheck S3 diagnosis agent (Strands on Amazon Bedrock AgentCore Runtime)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "bedrock-agentcore>=1.9.1",
+    "strands-agents>=1.15.0",
+    "pydantic>=2.11,<3",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]

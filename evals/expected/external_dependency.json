@@ -1,0 +1,9 @@
+{
+  "fixture_id": "external_dependency",
+  "hand_authored": true,
+  "expected_normalization_status": "EXTERNAL_DEPENDENCY",
+  "expected_applicability_status": "UNRESOLVED",
+  "expected_severity": "BLOCKING",
+  "expected_terminal_outcome": "BLOCKED",
+  "reason_codes": ["EXTERNAL_REFERENCE_REQUIRED"]
+}

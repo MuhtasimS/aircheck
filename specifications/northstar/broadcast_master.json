@@ -1,0 +1,85 @@
+{
+  "profile_id": "northstar_broadcast_master_v1",
+  "profile_name": "Northstar Broadcast Master",
+  "fictional": true,
+  "requirements": [
+    {
+      "requirement_id": "req_bm_package",
+      "source_reference": "Northstar Broadcast Master §1.1",
+      "category": "PACKAGE",
+      "description": "Delivery must use the broadcast folder layout and include a full manifest.",
+      "normalized_constraint": {"layout": "title/master/supporting", "manifest": "full", "required": true},
+      "applicable_assets": ["asset_package_root"],
+      "verification_tool": "scan_package",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_bm_video",
+      "source_reference": "Northstar Broadcast Master §3.1",
+      "category": "VIDEO",
+      "description": "Program video must be a 1080p ProRes 422 HQ QuickTime master at 23.976 fps.",
+      "normalized_constraint": {"container": "mov", "codec": "prores", "profile": "422_hq", "width": 1920, "height": 1080, "frame_rate": "24000/1001"},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "probe_media",
+      "severity": "BLOCKER",
+      "remediation_policy": "BLOCK"
+    },
+    {
+      "requirement_id": "req_bm_audio",
+      "source_reference": "Northstar Broadcast Master §4.2",
+      "category": "AUDIO",
+      "description": "Program audio must provide eight discrete 48 kHz channels at -24 LKFS ±2 LU and no more than -2 dBTP.",
+      "normalized_constraint": {"channels": 8, "layout": "discrete", "sample_rate_hz": 48000, "integrated_loudness_lkfs": -24, "tolerance_lu": 2, "max_true_peak_dbtp": -2},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "measure_audio",
+      "severity": "BLOCKER",
+      "remediation_policy": "APPROVAL_REQUIRED"
+    },
+    {
+      "requirement_id": "req_bm_captions",
+      "source_reference": "Northstar Broadcast Master §6.3",
+      "category": "CAPTIONS",
+      "description": "English captions must be supplied as an SCC sidecar.",
+      "normalized_constraint": {"required": true, "format": "SCC", "language": "en", "delivery": "sidecar"},
+      "applicable_assets": ["asset_captions_en"],
+      "verification_tool": "inspect_captions",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_bm_naming",
+      "source_reference": "Northstar Broadcast Master §2.1",
+      "category": "NAMING",
+      "description": "The master filename must include program, destination, and version tokens.",
+      "normalized_constraint": {"pattern": "{PROGRAM}_NSBM_v{VERSION}.mov", "case": "upper"},
+      "applicable_assets": ["asset_program_master"],
+      "verification_tool": "verify_filename",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    },
+    {
+      "requirement_id": "req_bm_metadata",
+      "source_reference": "Northstar Broadcast Master §7.1",
+      "category": "METADATA",
+      "description": "The full manifest must declare program, episode, runtime, and language metadata.",
+      "normalized_constraint": {"required_fields": ["program_title", "episode_number", "runtime", "language"]},
+      "applicable_assets": ["asset_manifest"],
+      "verification_tool": "verify_manifest",
+      "severity": "BLOCKER",
+      "remediation_policy": "BLOCK"
+    },
+    {
+      "requirement_id": "req_bm_checksum",
+      "source_reference": "Northstar Broadcast Master §8.1",
+      "category": "CHECKSUM",
+      "description": "Every delivered asset must appear in a SHA-256 checksum manifest.",
+      "normalized_constraint": {"required": true, "algorithm": "sha256", "coverage": "all_assets"},
+      "applicable_assets": ["asset_program_master", "asset_captions_en"],
+      "verification_tool": "hash_assets",
+      "severity": "BLOCKER",
+      "remediation_policy": "REVERSIBLE"
+    }
+  ]
+}
+

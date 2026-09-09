@@ -1,0 +1,62 @@
+AIRCheck M8 Phase A — Public engineering acceptance (against the deployed M8 build)
+Gate: M8 Phase A (engineering)   Captured: 2026-09-08
+Deployed release SHA: 223a508b77f85259ff25915015cccf4a3246aa1d   (all three images pinned)
+
+HEALTH / REVISION
+  API  https://prj5ss9lkg.execute-api.us-east-1.amazonaws.com
+    /health -> {"status":"ok","gate":"M8","git_sha":"223a508b77f85259ff25915015cccf4a3246aa1d",
+                "region":"us-east-1","persistence":"s3","agentcore":"enabled"}   (truthful SHA)
+    /docs, /openapi.json -> HTTP 404 (disabled, P8)
+  Web  https://x9qx3tr3i6.execute-api.us-east-1.amazonaws.com  -> HTTP 200, five-surface UI live,
+    renders the curated M8 Deliveries + the Tier-2 Decision (MEASURED -19.05 LUFS, REQUIRED
+    -26..-22, ORIGINAL LOCKED). Frozen UI unchanged.
+  AgentCore runtime aircheck_diagnosis  status=READY version=3  model us.amazon.nova-lite-v1:0
+
+HERO (deploy/verify_hero.py against the public API) — result GREEN
+  create Broadcast hero -> AWAITING_HUMAN_DECISION (Tier-2 create_normalized_audio_derivative,
+  -19.05 LUFS vs -26..-22) -> approve -> DELIVERY_READY; 15/15 requirements verified;
+  originals_integrity_verified=true; evidence [ledger.json, lineage.json, qc-report.json,
+  terminal.json]; ledger.json downloaded 200 application/octet-stream 15720 bytes.
+  denial (fresh run) -> BLOCKED.
+  checks: hero_earns_delivery_ready, originals_integrity_verified, decision_is_tier2,
+          denial_blocks, evidence_downloadable, health_reports_sha = all true.
+
+AGENTCORE SOURCE + DURABLE PROVENANCE (P4, from the run's evidence)
+  run_llk_broadcast_032916_29db5c evidence.agentcore_provenance:
+    semantic_source = AGENTCORE   model_id = us.amazon.nova-lite-v1:0   runtime = aircheck_diagnosis-...
+    invocation 1: AGENTCORE findings=5 dispositions=[APPLIED,APPLIED,NO_ACTION,APPLIED,NO_ACTION]
+    invocation 2: AGENTCORE findings=1 dispositions=[ESCALATE]  (the model-agency moment)
+  => AGENTCORE is distinguishable from FALLBACK in durable evidence, not only CloudWatch.
+     (This real Nova invocation ALSO proves the narrowed AgentCore IAM role works — P6.)
+
+CONCURRENCY (P1, live) — fresh pending decision, two conflicting mutations fired concurrently:
+  attempt 1: codes [200, 400]  deny->200 (BLOCKED), approve->400 "not awaiting"  (one success)
+  attempt 2: codes [200, 409]  deny->200 (BLOCKED), approve->409 CONFLICT         (the two-container
+             race the audit reproduced — loser gets a product-safe 409)
+  Both attempts: exactly ONE authoritative success; the run reached a single terminal (BLOCKED);
+  no duplicate authorization or Tier-2 derivative. Loser response is product-safe (no traceback
+  or internal path). Semantics proven deterministically in tests/persistence/test_concurrency.py.
+
+COLD START (P2, live) — see M8.3: worst cold path (fresh container, run detail first) = 4.25s;
+  cold /health 3.74s; cold list 0.29s. ~26s headroom under the 30s API Gateway limit.
+
+AGENTCORE FAILURE (P3, live) — bounded probe: model temporarily pointed at a nonexistent id.
+  create run -> HTTP 201 AWAITING_HUMAN_DECISION (NOT stranded, no 500).
+  evidence.agentcore_provenance.semantic_source = FALLBACK, fallback_reason = agent_error_envelope
+    (both invocations FALLBACK) -> visible, truthful fallback.
+  approve -> DELIVERY_READY deterministically (the double validated authority; no false-green).
+  model reverted to Nova Lite -> a fresh run classifies AGENTCORE again.
+  => malformed/failure -> visible safe fallback; no authority expansion; no stranded false-green.
+
+EVIDENCE INTEGRITY: evidence downloads return application/octet-stream with the recorded byte
+  length; originals_integrity_verified=true on the hero terminal verdict.
+
+CURATED RELEASE STATE (P7): aircheck-m8 Deliveries = exactly 3 real runtime runs:
+  run_llk_broadcast_032916_29db5c  Broadcast Master  DELIVERY READY   15/15 (AGENTCORE hero)
+  run_llk_broadcast_033505_cc10de  Broadcast Master  DECISION REQUIRED (AGENTCORE; pending Tier-2)
+  run_llk_preview_033604_760d4e    Digital Preview   DELIVERY READY   13/13
+  counts: active 1, decision_required 1, delivery_ready 2, unresolved_blockers 0.
+  All M7 state preserved intact under the `aircheck/` prefix; M8 uses `aircheck-m8`.
+
+RESULT: GREEN across health/revision, hero, AgentCore source+provenance, denial, concurrency,
+cold start, AgentCore failure, and evidence.

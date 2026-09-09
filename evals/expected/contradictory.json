@@ -1,0 +1,9 @@
+{
+  "fixture_id": "contradictory",
+  "hand_authored": true,
+  "expected_normalization_status": "CONTRADICTORY",
+  "expected_applicability_status": "APPLICABLE",
+  "expected_severity": "BLOCKING",
+  "expected_terminal_outcome": "BLOCKED",
+  "reason_codes": ["CONTRADICTORY_CONSTRAINTS"]
+}

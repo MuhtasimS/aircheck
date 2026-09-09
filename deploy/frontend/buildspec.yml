@@ -1,0 +1,20 @@
+# CodeBuild buildspec for the AIRCheck web (Vinext) image. Driven by
+# deploy/deploy.py `frontend` on the x86 CodeBuild project.
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR ($AWS_REGION)..."
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REGISTRY"
+      - IMAGE_TAG="${AIRCHECK_GIT_SHA:-latest}"
+  build:
+    commands:
+      - echo "Building AIRCheck web image..."
+      - docker build -f deploy/frontend/Dockerfile -t "$WEB_ECR_URI:$IMAGE_TAG" -t "$WEB_ECR_URI:latest" .
+  post_build:
+    commands:
+      - echo "Pushing web image to ECR..."
+      - docker push "$WEB_ECR_URI:$IMAGE_TAG"
+      - docker push "$WEB_ECR_URI:latest"
+      - printf '{"image":"%s:%s"}\n' "$WEB_ECR_URI" "$IMAGE_TAG" > web-image.json

@@ -1,0 +1,169 @@
+{
+  "corpus_version": "m6_corpus_v1",
+  "expected_terminal": "DELIVERY_READY",
+  "family": "conditional",
+  "ground_truth_basis": "Golden snapshot of the deterministic runtime (unchanged from gate/M5; independently verified by M4/M5 tests and docs/evidence/M4/M4.2_hero_capture.json). Canonical facts (requirement constraints/dispositions, terminal outcome, adversarial dimensions) cross-checked against specifications/northstar/profiles/m2_product_profiles.json, the closed catalog, and evals/expected/. Frozen before the post-audit authoritative rerun; falsifiability is proven independently by the tests/evals/test_corpus_harness.py mutation probes.",
+  "mission_ref": "conditional applicability \u2014 supported content_type polarity admitted APPLICABLE (v1 admission grammar; no runtime NOT_APPLICABLE gating)",
+  "scenario_id": "25_conditional_supported_applicable",
+  "stages": {
+    "admission": {
+      "normalization_status_multiset": {
+        "EXECUTABLE": 1
+      },
+      "requirements": [
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "lower": -26.0,
+            "operator": "RANGE",
+            "unit": "LUFS",
+            "upper": -22.0
+          },
+          "disposition": "HUMAN_APPROVAL_REQUIRED",
+          "measurement_key": "audio.integrated_loudness",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        }
+      ],
+      "severity_multiset": {
+        "BLOCKING": 1
+      },
+      "status_reasons": [
+        {
+          "measurement_key": "audio.integrated_loudness",
+          "reasons": []
+        }
+      ]
+    },
+    "applicability": {
+      "applicability_status_multiset": {
+        "APPLICABLE": 1
+      }
+    },
+    "events": {
+      "skeleton": [
+        {
+          "cause": "INGEST_REQUESTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "CREATED",
+          "to": "INGESTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INGEST_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTING",
+          "to": "INGESTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INTERPRETATION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTED",
+          "to": "INTERPRETING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "REQUIREMENTS_ADMITTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INTERPRETING",
+          "to": "REQUIREMENTS_ADMITTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "QC_PLAN_VALIDATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REQUIREMENTS_ADMITTED",
+          "to": "QC_PLANNED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "QC_PLANNED",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "TERMINAL_EVALUATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "DELIVERY_READY",
+          "type": "STATE_TRANSITION"
+        }
+      ]
+    },
+    "findings": {
+      "by_key": {},
+      "final_blocking_keys": [],
+      "requirement_keys": []
+    },
+    "interpretation": {
+      "requirement_count": 1
+    },
+    "measurement": {
+      "records": [
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "audio.integrated_loudness",
+          "status": "OK",
+          "unit": "LUFS",
+          "value": -24
+        }
+      ]
+    },
+    "planning": {
+      "plan_items": {
+        "audio.integrated_loudness": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "measure_loudness"
+        }
+      },
+      "required_check_count": 1
+    },
+    "predicate": {
+      "bindings": [
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "audio.integrated_loudness",
+          "bound_requirement_key": "audio.integrated_loudness",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "audio.integrated_loudness"
+        }
+      ],
+      "fail_count": 0,
+      "fail_keys_by_cycle": [],
+      "final_by_key": {
+        "audio.integrated_loudness": "PASS"
+      },
+      "not_evaluated_count": 0,
+      "pass_count": 1
+    },
+    "terminal": {
+      "counts": {
+        "applicable_blocking": 1,
+        "authorized_remediations": 0,
+        "autonomous_remediations": 0,
+        "failed": 0,
+        "not_evaluated": 0,
+        "passed": 1,
+        "pending_decisions": 0,
+        "unresolved_spec": 0
+      },
+      "has_verdict": true,
+      "outcome": "DELIVERY_READY",
+      "reason_codes": [],
+      "terminal_status": "DELIVERY_READY"
+    }
+  },
+  "title": "Supported content_type condition is admitted APPLICABLE"
+}

@@ -1,0 +1,27 @@
+# AWS CodeBuild buildspec — builds the AIRCheck API container in the cloud (no
+# local Docker) and pushes it to ECR. Driven by deploy/deploy.py, which sets the
+# ECR_URI / AWS_REGION / AIRCHECK_GIT_SHA environment variables on the project.
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR ($AWS_REGION)..."
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REGISTRY"
+      - IMAGE_TAG="${AIRCHECK_GIT_SHA:-latest}"
+      - echo "Image tag $IMAGE_TAG"
+  build:
+    commands:
+      - echo "Building AIRCheck API image..."
+      - docker build -f deploy/Dockerfile --build-arg AIRCHECK_GIT_SHA="$AIRCHECK_GIT_SHA" -t "$ECR_URI:$IMAGE_TAG" -t "$ECR_URI:latest" .
+  post_build:
+    commands:
+      - echo "Pushing image to ECR..."
+      - docker push "$ECR_URI:$IMAGE_TAG"
+      - docker push "$ECR_URI:latest"
+      - printf '{"image":"%s:%s","tag":"%s"}\n' "$ECR_URI" "$IMAGE_TAG" "$IMAGE_TAG" > image.json
+      - cat image.json
+
+artifacts:
+  files:
+    - image.json

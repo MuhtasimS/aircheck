@@ -1,0 +1,1054 @@
+{
+  "corpus_version": "m6_corpus_v1",
+  "expected_terminal": "BLOCKED",
+  "family": "authority",
+  "ground_truth_basis": "Golden snapshot of the deterministic runtime (unchanged from gate/M5; independently verified by M4/M5 tests and docs/evidence/M4/M4.2_hero_capture.json). Canonical facts (requirement constraints/dispositions, terminal outcome, adversarial dimensions) cross-checked against specifications/northstar/profiles/m2_product_profiles.json, the closed catalog, and evals/expected/. Frozen before the post-audit authoritative rerun; falsifiability is proven independently by the tests/evals/test_corpus_harness.py mutation probes.",
+  "mission_ref": "denied approval / protected remediation refused without approval",
+  "scenario_id": "15_denied_approval_blocks",
+  "stages": {
+    "admission": {
+      "normalization_status_multiset": {
+        "EXECUTABLE": 15
+      },
+      "requirements": [
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": "quicktime mov"
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "container.format",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": "h264"
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "video.codec",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "unit": "px",
+            "value": 1920
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "video.width",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "unit": "px",
+            "value": 1080
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "video.height",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "unit": "fps",
+            "value": "24000/1001"
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "video.frame_rate",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": 2
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "audio.channel_count",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": "stereo"
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "audio.channel_layout",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "unit": "Hz",
+            "value": 48000
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "audio.sample_rate",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "lower": -26.0,
+            "operator": "RANGE",
+            "unit": "LUFS",
+            "upper": -22.0
+          },
+          "disposition": "HUMAN_APPROVAL_REQUIRED",
+          "measurement_key": "audio.integrated_loudness",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "MAX",
+            "unit": "dBTP",
+            "value": -2.0
+          },
+          "disposition": "HUMAN_APPROVAL_REQUIRED",
+          "measurement_key": "audio.true_peak",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "PRESENT",
+            "value": true
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "captions.present",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": "webvtt"
+          },
+          "disposition": "AUTO_REMEDIATE",
+          "measurement_key": "captions.format",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": "THE_LAST_LIGHTKEEPER_NSBM_v1.mov"
+          },
+          "disposition": "AUTO_REMEDIATE",
+          "measurement_key": "package.filename[role]",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "PRESENT",
+            "value": true
+          },
+          "disposition": "AUTO_REMEDIATE",
+          "measurement_key": "package.manifest_present",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": true
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "package.checksums_match",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        }
+      ],
+      "severity_multiset": {
+        "BLOCKING": 15
+      },
+      "status_reasons": [
+        {
+          "measurement_key": "container.format",
+          "reasons": []
+        },
+        {
+          "measurement_key": "video.codec",
+          "reasons": []
+        },
+        {
+          "measurement_key": "video.width",
+          "reasons": []
+        },
+        {
+          "measurement_key": "video.height",
+          "reasons": []
+        },
+        {
+          "measurement_key": "video.frame_rate",
+          "reasons": []
+        },
+        {
+          "measurement_key": "audio.channel_count",
+          "reasons": []
+        },
+        {
+          "measurement_key": "audio.channel_layout",
+          "reasons": []
+        },
+        {
+          "measurement_key": "audio.sample_rate",
+          "reasons": []
+        },
+        {
+          "measurement_key": "audio.integrated_loudness",
+          "reasons": []
+        },
+        {
+          "measurement_key": "audio.true_peak",
+          "reasons": []
+        },
+        {
+          "measurement_key": "captions.present",
+          "reasons": []
+        },
+        {
+          "measurement_key": "captions.format",
+          "reasons": []
+        },
+        {
+          "measurement_key": "package.filename[role]",
+          "reasons": []
+        },
+        {
+          "measurement_key": "package.manifest_present",
+          "reasons": []
+        },
+        {
+          "measurement_key": "package.checksums_match",
+          "reasons": []
+        }
+      ]
+    },
+    "applicability": {
+      "applicability_status_multiset": {
+        "APPLICABLE": 15
+      }
+    },
+    "authority": {
+      "decision_choices": [
+        "DENIED"
+      ],
+      "decision_request_count": 1,
+      "decision_request_statuses": [
+        "DENIED"
+      ]
+    },
+    "diagnosis": {
+      "tier_exposure": [
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ]
+    },
+    "events": {
+      "skeleton": [
+        {
+          "cause": "INGEST_REQUESTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "CREATED",
+          "to": "INGESTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INGEST_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTING",
+          "to": "INGESTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INTERPRETATION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTED",
+          "to": "INTERPRETING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "REQUIREMENTS_ADMITTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INTERPRETING",
+          "to": "REQUIREMENTS_ADMITTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "QC_PLAN_VALIDATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REQUIREMENTS_ADMITTED",
+          "to": "QC_PLANNED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "QC_PLANNED",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "TIER1_REMEDIATION_SELECTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "REMEDIATING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "action_ordinal": 1,
+          "authorized": false,
+          "envelope_type": "ACTION_STARTED",
+          "tool": "rename_delivery_copy",
+          "type": "ACTION_STARTED"
+        },
+        {
+          "action_ordinal": 1,
+          "envelope_type": "ACTION_COMPLETED",
+          "tool": "rename_delivery_copy",
+          "type": "ACTION_COMPLETED"
+        },
+        {
+          "action_ordinal": 2,
+          "authorized": false,
+          "envelope_type": "ACTION_STARTED",
+          "tool": "convert_caption_format",
+          "type": "ACTION_STARTED"
+        },
+        {
+          "action_ordinal": 2,
+          "envelope_type": "ACTION_COMPLETED",
+          "tool": "convert_caption_format",
+          "type": "ACTION_COMPLETED"
+        },
+        {
+          "action_ordinal": 3,
+          "authorized": false,
+          "envelope_type": "ACTION_STARTED",
+          "tool": "write_checksum_manifest",
+          "type": "ACTION_STARTED"
+        },
+        {
+          "action_ordinal": 3,
+          "envelope_type": "ACTION_COMPLETED",
+          "tool": "write_checksum_manifest",
+          "type": "ACTION_COMPLETED"
+        },
+        {
+          "cause": "REMEDIATION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REMEDIATING",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "HUMAN_DECISION_REQUIRED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "AWAITING_HUMAN_DECISION",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "HUMAN_DECISION_DENIED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "AWAITING_HUMAN_DECISION",
+          "to": "BLOCKED",
+          "type": "STATE_TRANSITION"
+        }
+      ]
+    },
+    "findings": {
+      "by_key": {
+        "audio.integrated_loudness": {
+          "has_options": false,
+          "status": "UNRESOLVED"
+        },
+        "captions.format": {
+          "has_options": true,
+          "status": "RESOLVED"
+        },
+        "package.checksums_match": {
+          "has_options": false,
+          "status": "RESOLVED"
+        },
+        "package.filename[role]": {
+          "has_options": true,
+          "status": "RESOLVED"
+        },
+        "package.manifest_present": {
+          "has_options": true,
+          "status": "RESOLVED"
+        }
+      },
+      "final_blocking_keys": [
+        "audio.integrated_loudness"
+      ],
+      "requirement_keys": [
+        "audio.integrated_loudness",
+        "captions.format",
+        "package.checksums_match",
+        "package.filename[role]",
+        "package.manifest_present"
+      ]
+    },
+    "ingestion": {
+      "original_asset_count": 2,
+      "source_present": true
+    },
+    "interpretation": {
+      "requirement_count": 15
+    },
+    "measurement": {
+      "records": [
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "captions.present",
+          "status": "OK",
+          "unit": null,
+          "value": true
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "package.filename[role]",
+          "status": "OK",
+          "unit": null,
+          "value": "the-last-lightkeeper-delivery-v1.mov"
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "package.manifest_present",
+          "status": "OK",
+          "unit": null,
+          "value": false
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "audio.channel_count",
+          "status": "OK",
+          "unit": null,
+          "value": 2
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "container.format",
+          "status": "OK",
+          "unit": null,
+          "value": "quicktime mov"
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "audio.sample_rate",
+          "status": "OK",
+          "unit": "Hz",
+          "value": 48000
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "audio.channel_layout",
+          "status": "OK",
+          "unit": null,
+          "value": "stereo"
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "video.width",
+          "status": "OK",
+          "unit": "px",
+          "value": 1920
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "video.codec",
+          "status": "OK",
+          "unit": null,
+          "value": "h264"
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "video.height",
+          "status": "OK",
+          "unit": "px",
+          "value": 1080
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "video.frame_rate",
+          "status": "OK",
+          "unit": "fps",
+          "value": "24000/1001"
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "audio.integrated_loudness",
+          "status": "OK",
+          "unit": "LUFS",
+          "value": -19
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "audio.true_peak",
+          "status": "OK",
+          "unit": "dBTP",
+          "value": -19
+        },
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "captions.format",
+          "status": "OK",
+          "unit": null,
+          "value": "srt"
+        },
+        {
+          "cycle": 0,
+          "error": "MANIFEST_ABSENT",
+          "measurement_key": "package.checksums_match",
+          "status": "ERROR",
+          "unit": null,
+          "value": null
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "captions.present",
+          "status": "OK",
+          "unit": null,
+          "value": true
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "package.filename[role]",
+          "status": "OK",
+          "unit": null,
+          "value": "THE_LAST_LIGHTKEEPER_NSBM_v1.mov"
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "package.manifest_present",
+          "status": "OK",
+          "unit": null,
+          "value": true
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "audio.channel_count",
+          "status": "OK",
+          "unit": null,
+          "value": 2
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "container.format",
+          "status": "OK",
+          "unit": null,
+          "value": "quicktime mov"
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "audio.sample_rate",
+          "status": "OK",
+          "unit": "Hz",
+          "value": 48000
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "audio.channel_layout",
+          "status": "OK",
+          "unit": null,
+          "value": "stereo"
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "video.width",
+          "status": "OK",
+          "unit": "px",
+          "value": 1920
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "video.codec",
+          "status": "OK",
+          "unit": null,
+          "value": "h264"
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "video.height",
+          "status": "OK",
+          "unit": "px",
+          "value": 1080
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "video.frame_rate",
+          "status": "OK",
+          "unit": "fps",
+          "value": "24000/1001"
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "audio.integrated_loudness",
+          "status": "OK",
+          "unit": "LUFS",
+          "value": -19
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "audio.true_peak",
+          "status": "OK",
+          "unit": "dBTP",
+          "value": -19
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "captions.format",
+          "status": "OK",
+          "unit": null,
+          "value": "webvtt"
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "package.checksums_match",
+          "status": "OK",
+          "unit": null,
+          "value": true
+        }
+      ]
+    },
+    "planning": {
+      "plan_items": {
+        "audio.channel_count": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "audio.channel_layout": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "audio.integrated_loudness": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "measure_loudness"
+        },
+        "audio.sample_rate": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "audio.true_peak": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "measure_loudness"
+        },
+        "captions.format": {
+          "asset_role": "CAPTIONS",
+          "tool": "inspect_captions"
+        },
+        "captions.present": {
+          "asset_role": "CAPTIONS",
+          "tool": "scan_package"
+        },
+        "container.format": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "package.checksums_match": {
+          "asset_role": "MANIFEST",
+          "tool": "verify_manifest"
+        },
+        "package.filename[role]": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "scan_package"
+        },
+        "package.manifest_present": {
+          "asset_role": "MANIFEST",
+          "tool": "scan_package"
+        },
+        "video.codec": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "video.frame_rate": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "video.height": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        },
+        "video.width": {
+          "asset_role": "PROGRAM_MASTER",
+          "tool": "probe_media"
+        }
+      },
+      "required_check_count": 15
+    },
+    "predicate": {
+      "bindings": [
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "captions.present",
+          "bound_requirement_key": "captions.present",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "captions.present"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "package.filename[role]",
+          "bound_requirement_key": "package.filename[role]",
+          "cycle": 0,
+          "outcome": "FAIL",
+          "requirement_key": "package.filename[role]"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "package.manifest_present",
+          "bound_requirement_key": "package.manifest_present",
+          "cycle": 0,
+          "outcome": "FAIL",
+          "requirement_key": "package.manifest_present"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "audio.channel_count",
+          "bound_requirement_key": "audio.channel_count",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "audio.channel_count"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "container.format",
+          "bound_requirement_key": "container.format",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "container.format"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "audio.sample_rate",
+          "bound_requirement_key": "audio.sample_rate",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "audio.sample_rate"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "audio.channel_layout",
+          "bound_requirement_key": "audio.channel_layout",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "audio.channel_layout"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "video.width",
+          "bound_requirement_key": "video.width",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "video.width"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "video.codec",
+          "bound_requirement_key": "video.codec",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "video.codec"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "video.height",
+          "bound_requirement_key": "video.height",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "video.height"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "video.frame_rate",
+          "bound_requirement_key": "video.frame_rate",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "video.frame_rate"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "audio.integrated_loudness",
+          "bound_requirement_key": "audio.integrated_loudness",
+          "cycle": 0,
+          "outcome": "FAIL",
+          "requirement_key": "audio.integrated_loudness"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "audio.true_peak",
+          "bound_requirement_key": "audio.true_peak",
+          "cycle": 0,
+          "outcome": "PASS",
+          "requirement_key": "audio.true_peak"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "captions.format",
+          "bound_requirement_key": "captions.format",
+          "cycle": 0,
+          "outcome": "FAIL",
+          "requirement_key": "captions.format"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "package.checksums_match",
+          "bound_requirement_key": "package.checksums_match",
+          "cycle": 0,
+          "outcome": "NOT_EVALUATED",
+          "requirement_key": "package.checksums_match"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "captions.present",
+          "bound_requirement_key": "captions.present",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "captions.present"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "package.filename[role]",
+          "bound_requirement_key": "package.filename[role]",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "package.filename[role]"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "package.manifest_present",
+          "bound_requirement_key": "package.manifest_present",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "package.manifest_present"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "audio.channel_count",
+          "bound_requirement_key": "audio.channel_count",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "audio.channel_count"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "container.format",
+          "bound_requirement_key": "container.format",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "container.format"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "audio.sample_rate",
+          "bound_requirement_key": "audio.sample_rate",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "audio.sample_rate"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "audio.channel_layout",
+          "bound_requirement_key": "audio.channel_layout",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "audio.channel_layout"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "video.width",
+          "bound_requirement_key": "video.width",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "video.width"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "video.codec",
+          "bound_requirement_key": "video.codec",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "video.codec"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "video.height",
+          "bound_requirement_key": "video.height",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "video.height"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "video.frame_rate",
+          "bound_requirement_key": "video.frame_rate",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "video.frame_rate"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "audio.integrated_loudness",
+          "bound_requirement_key": "audio.integrated_loudness",
+          "cycle": 1,
+          "outcome": "FAIL",
+          "requirement_key": "audio.integrated_loudness"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "audio.true_peak",
+          "bound_requirement_key": "audio.true_peak",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "audio.true_peak"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "captions.format",
+          "bound_requirement_key": "captions.format",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "captions.format"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "package.checksums_match",
+          "bound_requirement_key": "package.checksums_match",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "package.checksums_match"
+        }
+      ],
+      "fail_count": 1,
+      "fail_keys_by_cycle": [
+        [
+          0,
+          [
+            "audio.integrated_loudness",
+            "captions.format",
+            "package.checksums_match",
+            "package.filename[role]",
+            "package.manifest_present"
+          ]
+        ],
+        [
+          1,
+          [
+            "audio.integrated_loudness"
+          ]
+        ]
+      ],
+      "final_by_key": {
+        "audio.channel_count": "PASS",
+        "audio.channel_layout": "PASS",
+        "audio.integrated_loudness": "FAIL",
+        "audio.sample_rate": "PASS",
+        "audio.true_peak": "PASS",
+        "captions.format": "PASS",
+        "captions.present": "PASS",
+        "container.format": "PASS",
+        "package.checksums_match": "PASS",
+        "package.filename[role]": "PASS",
+        "package.manifest_present": "PASS",
+        "video.codec": "PASS",
+        "video.frame_rate": "PASS",
+        "video.height": "PASS",
+        "video.width": "PASS"
+      },
+      "not_evaluated_count": 0,
+      "pass_count": 14
+    },
+    "remediation": {
+      "action_completed_count": 3,
+      "action_failed_count": 0,
+      "action_started_count": 3,
+      "action_tools": [
+        "rename_delivery_copy",
+        "convert_caption_format",
+        "write_checksum_manifest"
+      ],
+      "authorized_remediations": 0,
+      "autonomous_remediations": 3
+    },
+    "terminal": {
+      "has_verdict": false,
+      "terminal_status": "BLOCKED"
+    }
+  },
+  "title": "Denied approval routes to BLOCKED"
+}

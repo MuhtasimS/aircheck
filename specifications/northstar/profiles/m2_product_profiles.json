@@ -1,0 +1,54 @@
+{
+  "schema_version": "m2_product_profile_expectations_v1",
+  "fictional_destination": "Northstar Broadcast Network",
+  "profiles": [
+    {
+      "profile_id": "northstar_broadcast_master_v1",
+      "profile_name": "Northstar Broadcast Master",
+      "valid_product_profile": true,
+      "source_file": "broadcast_master.md",
+      "source_sha256": "88a157e08d0a43a02b0e2af6b75ed230239a0ae1f22891d2a464e8241979d3a5",
+      "normalized_source_sha256": "88a157e08d0a43a02b0e2af6b75ed230239a0ae1f22891d2a464e8241979d3a5",
+      "requirements": {
+        "container.format": {"operator": "EQUALS", "value": "quicktime mov"},
+        "video.codec": {"operator": "EQUALS", "value": "h264"},
+        "video.width": {"operator": "EQUALS", "unit": "px", "value": 1920},
+        "video.height": {"operator": "EQUALS", "unit": "px", "value": 1080},
+        "video.frame_rate": {"operator": "EQUALS", "unit": "fps", "value": "24000/1001"},
+        "audio.channel_count": {"operator": "EQUALS", "value": 2},
+        "audio.channel_layout": {"operator": "EQUALS", "value": "stereo"},
+        "audio.sample_rate": {"operator": "EQUALS", "unit": "Hz", "value": 48000},
+        "audio.integrated_loudness": {"operator": "RANGE", "unit": "LUFS", "lower": -26.0, "upper": -22.0},
+        "audio.true_peak": {"operator": "MAX", "unit": "dBTP", "value": -2.0},
+        "captions.present": {"operator": "PRESENT", "value": true},
+        "captions.format": {"operator": "EQUALS", "value": "webvtt"},
+        "package.filename[role]": {"operator": "EQUALS", "value": "THE_LAST_LIGHTKEEPER_NSBM_v1.mov"},
+        "package.manifest_present": {"operator": "PRESENT", "value": true},
+        "package.checksums_match": {"operator": "EQUALS", "value": true}
+      }
+    },
+    {
+      "profile_id": "northstar_digital_preview_v1",
+      "profile_name": "Northstar Digital Preview",
+      "valid_product_profile": true,
+      "source_file": "digital_preview.md",
+      "source_sha256": "d5a14ff2ff4683e0330522452665d64228bd57f357c95b471c60e0fd85ec5161",
+      "normalized_source_sha256": "d5a14ff2ff4683e0330522452665d64228bd57f357c95b471c60e0fd85ec5161",
+      "requirements": {
+        "container.format": {"operator": "EQUALS", "value": "quicktime mov"},
+        "video.codec": {"operator": "EQUALS", "value": "h264"},
+        "video.width": {"operator": "EQUALS", "unit": "px", "value": 1920},
+        "video.height": {"operator": "EQUALS", "unit": "px", "value": 1080},
+        "video.frame_rate": {"operator": "EQUALS", "unit": "fps", "value": "24000/1001"},
+        "audio.channel_count": {"operator": "EQUALS", "value": 2},
+        "audio.channel_layout": {"operator": "EQUALS", "value": "stereo"},
+        "audio.sample_rate": {"operator": "EQUALS", "unit": "Hz", "value": 48000},
+        "audio.integrated_loudness": {"operator": "RANGE", "unit": "LUFS", "lower": -21.0, "upper": -17.0},
+        "audio.true_peak": {"operator": "MAX", "unit": "dBTP", "value": -2.0},
+        "captions.present": {"operator": "PRESENT", "value": true},
+        "captions.format": {"operator": "ONE_OF", "values": ["srt", "webvtt"]},
+        "package.filename[role]": {"operator": "EQUALS", "value": "the-last-lightkeeper-preview-v1.mov"}
+      }
+    }
+  ]
+}

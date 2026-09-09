@@ -1,0 +1,9 @@
+{
+  "fixture_id": "mixed_modals",
+  "hand_authored": true,
+  "expected_normalization_status": "EXECUTABLE",
+  "expected_applicability_status": "APPLICABLE",
+  "expected_severity": "BLOCKING",
+  "expected_terminal_outcome": "BLOCKED",
+  "reason_codes": ["MIXED_MODAL_LANGUAGE"]
+}

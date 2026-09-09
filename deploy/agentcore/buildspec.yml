@@ -1,0 +1,21 @@
+# CodeBuild buildspec for the AIRCheck diagnosis agent image (native ARM64).
+# Driven by deploy/deploy.py `agentcore` on an ARM_CONTAINER CodeBuild project.
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR ($AWS_REGION)..."
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$ECR_REGISTRY"
+      - IMAGE_TAG="${AIRCHECK_GIT_SHA:-latest}"
+      - echo "Agent image tag $IMAGE_TAG (arch $(uname -m))"
+  build:
+    commands:
+      - echo "Building AIRCheck diagnosis agent image (ARM64)..."
+      - docker build -f deploy/agentcore/Dockerfile -t "$AGENT_ECR_URI:$IMAGE_TAG" -t "$AGENT_ECR_URI:latest" .
+  post_build:
+    commands:
+      - echo "Pushing agent image to ECR..."
+      - docker push "$AGENT_ECR_URI:$IMAGE_TAG"
+      - docker push "$AGENT_ECR_URI:latest"
+      - printf '{"image":"%s:%s"}\n' "$AGENT_ECR_URI" "$IMAGE_TAG" > agent-image.json

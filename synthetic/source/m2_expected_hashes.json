@@ -1,0 +1,19 @@
+{
+  "schema_version": "m2_fixture_hashes_v1",
+  "hash_algorithm": "sha256",
+  "generator_environment": {
+    "ffmpeg": "9.0.1-full_build-www.gyan.dev",
+    "program_duration_seconds": 1.0,
+    "video": "h264 1920x1080 24000/1001",
+    "audio": "pcm_s16le stereo 48000 Hz"
+  },
+  "clean_original_hashes": {
+    "SHA256SUMS": "7b1b582c2a9693cad16d629aea80fada0f14cb4776cd71894e54b9ae2e353ecd",
+    "THE_LAST_LIGHTKEEPER_NSBM_v1.mov": "c20d92067656e9ccb261e9b135b1b1c0f27834df7ac546cdc052426252885e2c",
+    "THE_LAST_LIGHTKEEPER_NSBM_v1.vtt": "a60d9c87d0a88a5e7047e52a67b7e71d457a7717e6f437bed70116218007b494"
+  },
+  "hero_original_hashes": {
+    "the-last-lightkeeper-delivery-v1.mov": "38274ba58146dc1d4509a9ab7e57f42ce8d61681c8bb76f41d41326ae6f98abd",
+    "the-last-lightkeeper-delivery-v1.srt": "fa10a2e89f5b100b30bdc348c2f87d13eaf5235e2b5745a754615869c0b297a3"
+  }
+}

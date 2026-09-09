@@ -1,0 +1,325 @@
+{
+  "corpus_version": "m6_corpus_v1",
+  "expected_terminal": "DELIVERY_READY",
+  "family": "isolated_defect",
+  "ground_truth_basis": "Golden snapshot of the deterministic runtime (unchanged from gate/M5; independently verified by M4/M5 tests and docs/evidence/M4/M4.2_hero_capture.json). Canonical facts (requirement constraints/dispositions, terminal outcome, adversarial dimensions) cross-checked against specifications/northstar/profiles/m2_product_profiles.json, the closed catalog, and evals/expected/. Frozen before the post-audit authoritative rerun; falsifiability is proven independently by the tests/evals/test_corpus_harness.py mutation probes.",
+  "mission_ref": "checksum/manifest defect individually",
+  "scenario_id": "04_manifest_defect",
+  "stages": {
+    "admission": {
+      "normalization_status_multiset": {
+        "EXECUTABLE": 2
+      },
+      "requirements": [
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "PRESENT",
+            "value": true
+          },
+          "disposition": "AUTO_REMEDIATE",
+          "measurement_key": "package.manifest_present",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        },
+        {
+          "applicability_status": "APPLICABLE",
+          "constraint": {
+            "operator": "EQUALS",
+            "value": true
+          },
+          "disposition": "REPORT_ONLY",
+          "measurement_key": "package.checksums_match",
+          "normalization_status": "EXECUTABLE",
+          "severity": "BLOCKING"
+        }
+      ],
+      "severity_multiset": {
+        "BLOCKING": 2
+      },
+      "status_reasons": [
+        {
+          "measurement_key": "package.manifest_present",
+          "reasons": []
+        },
+        {
+          "measurement_key": "package.checksums_match",
+          "reasons": []
+        }
+      ]
+    },
+    "applicability": {
+      "applicability_status_multiset": {
+        "APPLICABLE": 2
+      }
+    },
+    "authority": {
+      "decision_choices": [],
+      "decision_request_count": 0,
+      "decision_request_statuses": []
+    },
+    "diagnosis": {
+      "tier_exposure": [
+        [
+          1
+        ]
+      ]
+    },
+    "events": {
+      "skeleton": [
+        {
+          "cause": "INGEST_REQUESTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "CREATED",
+          "to": "INGESTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INGEST_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTING",
+          "to": "INGESTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INTERPRETATION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INGESTED",
+          "to": "INTERPRETING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "REQUIREMENTS_ADMITTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INTERPRETING",
+          "to": "REQUIREMENTS_ADMITTED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "QC_PLAN_VALIDATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REQUIREMENTS_ADMITTED",
+          "to": "QC_PLANNED",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_STARTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "QC_PLANNED",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "TIER1_REMEDIATION_SELECTED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "REMEDIATING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "action_ordinal": 1,
+          "authorized": false,
+          "envelope_type": "ACTION_STARTED",
+          "tool": "write_checksum_manifest",
+          "type": "ACTION_STARTED"
+        },
+        {
+          "action_ordinal": 1,
+          "envelope_type": "ACTION_COMPLETED",
+          "tool": "write_checksum_manifest",
+          "type": "ACTION_COMPLETED"
+        },
+        {
+          "cause": "REMEDIATION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "REMEDIATING",
+          "to": "INSPECTING",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "INSPECTION_COMPLETED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "INSPECTING",
+          "to": "FINDINGS_READY",
+          "type": "STATE_TRANSITION"
+        },
+        {
+          "cause": "TERMINAL_EVALUATED",
+          "envelope_type": "STATE_TRANSITION",
+          "from": "FINDINGS_READY",
+          "to": "DELIVERY_READY",
+          "type": "STATE_TRANSITION"
+        }
+      ]
+    },
+    "evidence_integrity": {
+      "artifact_hashes_valid": true,
+      "artifacts": [
+        "ledger.json",
+        "lineage.json",
+        "qc-report.json",
+        "terminal.json"
+      ],
+      "originals_integrity_verified": true
+    },
+    "findings": {
+      "by_key": {
+        "package.checksums_match": {
+          "has_options": false,
+          "status": "RESOLVED"
+        },
+        "package.manifest_present": {
+          "has_options": true,
+          "status": "RESOLVED"
+        }
+      },
+      "final_blocking_keys": [],
+      "requirement_keys": [
+        "package.checksums_match",
+        "package.manifest_present"
+      ]
+    },
+    "ingestion": {
+      "original_asset_count": 2,
+      "source_present": true
+    },
+    "interpretation": {
+      "requirement_count": 2
+    },
+    "measurement": {
+      "records": [
+        {
+          "cycle": 0,
+          "error": null,
+          "measurement_key": "package.manifest_present",
+          "status": "OK",
+          "unit": null,
+          "value": false
+        },
+        {
+          "cycle": 0,
+          "error": "MANIFEST_ABSENT",
+          "measurement_key": "package.checksums_match",
+          "status": "ERROR",
+          "unit": null,
+          "value": null
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "package.manifest_present",
+          "status": "OK",
+          "unit": null,
+          "value": true
+        },
+        {
+          "cycle": 1,
+          "error": null,
+          "measurement_key": "package.checksums_match",
+          "status": "OK",
+          "unit": null,
+          "value": true
+        }
+      ]
+    },
+    "planning": {
+      "plan_items": {
+        "package.checksums_match": {
+          "asset_role": "MANIFEST",
+          "tool": "verify_manifest"
+        },
+        "package.manifest_present": {
+          "asset_role": "MANIFEST",
+          "tool": "scan_package"
+        }
+      },
+      "required_check_count": 2
+    },
+    "predicate": {
+      "bindings": [
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "package.manifest_present",
+          "bound_requirement_key": "package.manifest_present",
+          "cycle": 0,
+          "outcome": "FAIL",
+          "requirement_key": "package.manifest_present"
+        },
+        {
+          "bound_cycle": 0,
+          "bound_measurement_key": "package.checksums_match",
+          "bound_requirement_key": "package.checksums_match",
+          "cycle": 0,
+          "outcome": "NOT_EVALUATED",
+          "requirement_key": "package.checksums_match"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "package.manifest_present",
+          "bound_requirement_key": "package.manifest_present",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "package.manifest_present"
+        },
+        {
+          "bound_cycle": 1,
+          "bound_measurement_key": "package.checksums_match",
+          "bound_requirement_key": "package.checksums_match",
+          "cycle": 1,
+          "outcome": "PASS",
+          "requirement_key": "package.checksums_match"
+        }
+      ],
+      "fail_count": 0,
+      "fail_keys_by_cycle": [
+        [
+          0,
+          [
+            "package.checksums_match",
+            "package.manifest_present"
+          ]
+        ]
+      ],
+      "final_by_key": {
+        "package.checksums_match": "PASS",
+        "package.manifest_present": "PASS"
+      },
+      "not_evaluated_count": 0,
+      "pass_count": 2
+    },
+    "remediation": {
+      "action_completed_count": 1,
+      "action_failed_count": 0,
+      "action_started_count": 1,
+      "action_tools": [
+        "write_checksum_manifest"
+      ],
+      "authorized_remediations": 0,
+      "autonomous_remediations": 1
+    },
+    "terminal": {
+      "counts": {
+        "applicable_blocking": 2,
+        "authorized_remediations": 0,
+        "autonomous_remediations": 1,
+        "failed": 0,
+        "not_evaluated": 0,
+        "passed": 2,
+        "pending_decisions": 0,
+        "unresolved_spec": 0
+      },
+      "has_verdict": true,
+      "outcome": "DELIVERY_READY",
+      "reason_codes": [],
+      "terminal_status": "DELIVERY_READY"
+    }
+  },
+  "title": "Missing checksum manifest auto-remediated"
+}

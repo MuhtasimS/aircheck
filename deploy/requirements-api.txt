@@ -1,0 +1,9 @@
+# AIRCheck API container runtime dependencies (M7 deployment).
+# The container serves the FastAPI application boundary over the frozen M4
+# runtime; it needs only pydantic + FastAPI/uvicorn + boto3 (S3RunStore and the
+# AgentCore data-plane invoke). Strands / provider SDKs are NOT here — the
+# semantic agent runs inside AgentCore Runtime, not in this image.
+pydantic==2.13.5
+fastapi==0.128.8
+uvicorn==0.48.0
+boto3>=1.40,<2

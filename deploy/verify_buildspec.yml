@@ -1,0 +1,10 @@
+# External, non-build-machine verification of the AIRCheck deployment, run inside
+# an ephemeral AWS CodeBuild host (not the Windows build workstation). The logic
+# lives in deploy/external_verify.sh; deploy/deploy.py `external-verify` sets
+# AIRCHECK_API_BASE / AIRCHECK_WEB_BASE / EXPECTED_SHA.
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - bash deploy/external_verify.sh

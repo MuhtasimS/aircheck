@@ -1,0 +1,34 @@
+AIRCheck M8 Phase A — Independent-host (AWS CodeBuild) verification
+Gate: M8 Phase A (engineering)   Captured: 2026-09-08
+
+Repeats the M7-style independent AWS-hosted check against the deployed M8 build from a clean
+AWS CodeBuild environment (no localhost, no build-workstation filesystem dependency), driving
+the real public HTTPS endpoints with immutable release identifiers.
+
+Command: python deploy/deploy.py external-verify --sha 223a508b77f85259ff25915015cccf4a3246aa1d
+
+CodeBuild build aircheck-api-build:2b5ffbe5-eb0e-44aa-b9a2-6c18f92c4876
+  status=IN_PROGRESS phase=BUILD
+  status=SUCCEEDED  phase=COMPLETED
+
+--- from the CodeBuild host ---
+  public API resolves over HTTPS:
+    /health -> {"status":"ok","gate":"M8","git_sha":"223a508b77f85259ff25915015cccf4a3246aa1d",
+                "region":"us-east-1","persistence":"s3","agentcore":"enabled"}
+    deployed git_sha=223a508b77f85259ff25915015cccf4a3246aa1d  expected=223a508b77f85259ff25915015cccf4a3246aa1d  (match)
+  public API path responds:
+    profiles ['northstar_broadcast_master_v1', 'northstar_digital_preview_v1']
+    terminal_outcomes ['DELIVERY_READY', 'BLOCKED']
+  public frontend resolves over HTTPS (web / -> 200; API base injected).
+  full canonical hero from this external host: HERO VERIFY GREEN
+    (create -> Tier-2 decision -> approve -> DELIVERY_READY 15/15, originals integrity true,
+     evidence downloadable; denial -> BLOCKED; health_reports_sha=true; result=GREEN)
+  no localhost / build-machine dependency in the public verifier.
+  EXTERNAL VERIFICATION GREEN
+
+EXTERNAL VERIFY: SUCCEEDED
+
+RESULT: GREEN — the deployed M8 release is reachable and correct over public HTTPS from an
+independent AWS host, pinned to the immutable release SHA 223a508b77f85259...
+(The external hero created transient runs on aircheck-m8; the release state was re-curated to
+the canonical 3 afterward — see M8.9.)

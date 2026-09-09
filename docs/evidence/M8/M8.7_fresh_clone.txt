@@ -1,0 +1,51 @@
+AIRCheck M8 Phase A — Fresh-clone reproducibility receipt
+Gate: M8 Phase A (engineering)   Captured: 2026-09-08
+
+GOAL (mission §16): from a genuinely fresh checkout OUTSIDE the working repo, prove the
+documented engineering workflow can install, test, build, lint, and run the bounded demo,
+with NO dependency on the working venv, node_modules, local .aircheck, .vinext, or
+machine-specific absolute paths.
+
+IMPLEMENTATION COMMIT UNDER TEST: 223a508b77f85259ff25915015cccf4a3246aa1d
+
+REPRODUCIBILITY FIXES MADE THIS PHASE (mechanical tooling, not production code):
+  - Added .gitattributes (`* text=auto eol=lf` + binary rules). Without it, a fresh clone
+    on a host with git autocrlf enabled (default Windows) checks out text source files as
+    CRLF, changing their bytes and breaking the frozen SHA-256 fixtures (northstar source
+    docs, destination profiles, M0/M2 fixtures). `git add --renormalize .` produced ZERO
+    content changes (the repo already stores LF) — the fix only affects checkout.
+  - Reordered `scripts/project.py verify` to build BEFORE lint: the frontend lint/type-check
+    needs the ambient route types the production build generates (git-ignored .vinext/),
+    absent on a cold clone. (`make install test demo` — the contract path — already passed
+    cold; this makes the fuller `verify` reproducible too.)
+  - Added boto3 to the `test` extra (botocore.exceptions used by the S3 store/lease tests)
+    and a `deploy` extra, so `pip install -e .[test]` runs the FULL suite on a fresh clone.
+  - Added a Makefile and `scripts/demo.py` + a `demo` runner command so `make install test
+    demo` is the canonical, one-command reproducible path.
+
+PROCEDURE (executed):
+  git clone <repo> <tempdir outside working tree>      HEAD = 223a508b77f85259...
+  # leakage check: no .venv / node_modules / .aircheck / .vinext present in the clone
+  python -m venv .venv                                  (fresh, empty venv)
+  python scripts/project.py install                     -> exit 0
+      backend : pip install -e .[test]  (installed boto3 1.43.90, fastapi 0.128.8,
+                pydantic 2.13.5, pytest 8.4.2, uvicorn 0.48.0, httpx 0.28.1, ...)
+      frontend: npm ci                  (added 700 packages; 11 known advisories — pre-M8,
+                recorded in SECURITY.md; no forced upgrade)
+  python scripts/project.py verify                      -> exit 0
+      backend tests ....... 305 passed
+      frontend tests ...... 22 passed
+      frontend build ...... Build complete (vinext)
+      frontend lint ....... oxlint clean
+      whitespace check .... git diff --check clean
+  python scripts/project.py demo                        -> exit 0
+      hero   : create -> Tier-2 human decision (-19.05 LUFS vs -26..-22) -> approve ->
+               DELIVERY_READY, 15/15 verified, originals_integrity_verified=True,
+               evidence [ledger.json, lineage.json, qc-report.json, terminal.json]
+      denial : create -> deny -> BLOCKED
+      DEMO RESULT: GREEN - all invariants held
+
+RESULT: GREEN. The bounded engineering workflow is mechanically reproducible from a fresh
+clone on a clean venv, independent of the working tree. Requires only a local ffmpeg/ffprobe
+(deterministic media truth) and network access for dependency install; no AWS login for the
+local deterministic demo.
